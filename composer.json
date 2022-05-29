@@ -1,0 +1,23 @@
+{
+    "name": "degmi/clima-auto",
+    "description": "automatizador del clima",
+    "type": "project",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Principal\\": "src/"
+        },
+        "files": [
+            
+          ]
+    },
+    "authors": [
+        {
+            "name": "Diego Ramirez",
+            "email": "diego.ramirez@altatec.com.mx"
+        }
+    ],
+    "require": {
+        "guzzlehttp/guzzle": "^7.4"
+    }
+}
