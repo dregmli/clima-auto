@@ -2,6 +2,7 @@
 
 namespace Principal;
 
+use DateTime;
 use GuzzleHttp\Client;
 use GuzzleHttp\Psr7\Request;
 
@@ -30,16 +31,27 @@ class SMNClient{
         echo $imageId;
         echo "\n";
 
+        $year = "";
+        $month = "";
+        $day = "";
+        //$date = new DateTime();
+        $formated = date('Y/F/d');
+        $pathImages = "./img/$formated";
+
+        if (!file_exists($pathImages)) {
+            mkdir($pathImages, 0777, true);
+        }
+
         # Antes de descargar la foto, saber si ya existe
-        $filename = "./img/{$imageId}";
-        if( file_exists($filename) ){
+        if( file_exists( "$pathImages/$imageId" ) ){
             echo "Misma imagen, no se descargará \n";
             return;
         };
+       
 
         //Sigue obtener la imagen y guardarla.
         $imageUrl = "https://smn.conagua.gob.mx/tools/RESOURCES/GOES/GOES Este/México/Tope de Nubes/MEDIA/{$imageId}";
-        $client->request('GET', $imageUrl, ['sink' => "./img/{$imageId}", 'verify' => false]);
+        $client->request('GET', $imageUrl, ['sink' => "$pathImages/{$imageId}", 'verify' => false]);
         echo "Imagen guardada\n";
     }
 
